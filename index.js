@@ -34,6 +34,7 @@ async function sendWord()
 {
     const word = await generateNewWord();
 
+    // checks if the word has already been used or is not recognized
     if (usedWords.some(wordObj => wordObj.word === word)) {
         console.log(`A palavra "${word}" já foi usada.`);
         return;
@@ -48,7 +49,7 @@ async function sendWord()
         await page.type('input[type="text"]', word);
         await page.keyboard.press('Enter');
 
-        // Aguardar a palavra aparecer na rodada atual
+        // waits for the response to check if the word is known or not
         const response = await page.waitForFunction((word) => {
             const knowWord = Array.from(document.querySelectorAll('.guess-history .row-wrapper.current .row span'))
                 .some(span => span.textContent.trim() === word);
@@ -56,7 +57,7 @@ async function sendWord()
             const errorMessage = Array.from(document.querySelectorAll('.message-text'))
                 .some(div => div.textContent.trim() === 'Perdão, não conheço essa palavra' || div.textContent.trim() === 'Essa palavra não vale porque é muito comum');
 
-            // Retorna apenas 'known', 'error' ou null
+            // returns the status of the word
             return knowWord ? 'known' : (errorMessage ? 'error' : null);
         }, {}, word);
 
@@ -109,6 +110,7 @@ async function generateNewWord()
     };
 
 
+    // Send the message to the OpenAI API
     const completion = await openai.chat.completions.create({
         messages: [{ 
             role: "system", 
@@ -139,6 +141,7 @@ async function generateNewWord()
 
 async function checkIfWonTheGame() {
     try {
+        // check if the game is over
         const response = await page.waitForFunction(() => {
             return Array.from(document.querySelectorAll('.end-msg .bigger span'))
                 .some(span => span.textContent.trim() === 'Parabéns!');
