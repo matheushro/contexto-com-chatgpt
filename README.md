@@ -19,4 +19,19 @@ Este projeto tem como objetivo integrar o modelo ChatGPT em uma experiência de 
 
 1. Clone o repositório:
    ```bash
-   git clone [URL do repositório]
+   git clone [[URL do repositório]](https://github.com/matheushro/contexto-com-chatgpt)
+
+2. Navegue até o diretório do projeto
+   ```bash
+   cd [diretório do projeto]
+   
+3. Instale as dependências:
+   ```bash
+   npm install
+
+4. Atualize o .env com a sua API_KEY da OpenAI:
+
+5. Para rodar o projeto, execute:
+   ```bash
+   node index.js
+   
