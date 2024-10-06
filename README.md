@@ -15,7 +15,7 @@ Este projeto tem como objetivo integrar o modelo ChatGPT em uma experiência de 
 
 1. Clone o repositório:
    ```bash
-   git clone [[URL do repositório]](https://github.com/matheushro/contexto-com-chatgpt)
+   git clone https://github.com/matheushro/contexto-com-chatgpt
 
 2. Navegue até o diretório do projeto
    ```bash
