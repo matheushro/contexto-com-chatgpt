@@ -77,7 +77,6 @@ async function sendWord()
     }
 }
 
-
 async function saveCurrentWord() {
     //extracts the words from the current round
     const newWords = await page.evaluate(() => {
@@ -103,8 +102,6 @@ async function saveCurrentWord() {
 
 async function generateNewWord()
 {
-
-
     const sortedWords = usedWords.sort((a, b) => b.number - a.number);
     const jsonOutput = {
         usedWords: sortedWords,
